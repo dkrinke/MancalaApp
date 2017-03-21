@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/connecting"
+        android:visibility="visible"
+        android:layout_marginTop="100dp"
+        android:padding="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connecting to Player 2 ..."
+        android:textSize="40sp"/>
+
+    <RelativeLayout
+        android:id="@+id/connected"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="exit"
+            android:background="@drawable/ic_action_name"/>
+
+        <Button
+            android:id="@+id/store1"
+            android:rotation="-90"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:text="0"
+            android:background="@drawable/store"/>
+        <Button
+            android:id="@+id/store2"
+            android:rotation="90"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:text="0"
+            android:background="@drawable/store"/>
+
+        <!-- Bottom Row-->
+        <Button
+            android:id="@+id/button1"
+            android:layout_toRightOf="@id/store1"
+            android:layout_below="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClicked"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button1"
+            android:layout_below="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClicked"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button2"
+            android:layout_below="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClicked"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button3"
+            android:layout_below="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClicked"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button4"
+            android:layout_below="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClicked"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button5"
+            android:layout_below="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClicked"
+            android:background="@drawable/round_button" />
+
+        <!--Top Row-->
+        <Button
+            android:id="@+id/button12"
+            android:layout_above="@id/store1"
+            android:layout_toRightOf="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button12"
+            android:layout_above="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button11"
+            android:layout_above="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button10"
+            android:layout_above="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button9"
+            android:layout_above="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/button8"
+            android:layout_above="@id/store1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
