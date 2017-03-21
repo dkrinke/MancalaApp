@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
     private Button store2;
 
     static private Boolean didPlayerMove = false;
-    Object lock = new Object();
+    private Object lock = new Object();
 
     private CommunicationThread commThread = null;
 
@@ -120,7 +120,7 @@ public class MainActivity extends Activity {
 
         updateConversationHandler = new Handler();
 
-        serverThread = new Thread(new ServerThread());
+        serverThread = new Thread(new ServerThread(lock));
         serverThread.start();
 
 //        try {
@@ -188,13 +188,13 @@ public class MainActivity extends Activity {
 
 //                notifyAll();
 
-//                synchronized (lock) {
+                synchronized (lock) {
                     System.out.println("Previous Notify All Called");
-//                    lock.notifyAll();
-//                }
+                    lock.notifyAll();
+                }
 
-//                Notifier notifier = new Notifier(lock);
-//                new Thread(notifier, "Wait").start();
+                Notifier notifier = new Notifier(lock);
+                new Thread(notifier, "Notify").start();
 
                 didPlayerMove = false;
             }
@@ -227,19 +227,19 @@ public class MainActivity extends Activity {
 
     public class Notifier implements Runnable {
 
-        private Object lock;
+        private Object passedInLock;
 
-        public Notifier(Object lock) {
-            this.lock = lock;
+        public Notifier(Object passedInLock) {
+            this.passedInLock = passedInLock;
             System.out.println("Notifier");
         }
 
         @Override
         public void run() {
-//            synchronized (lock) {
+            synchronized (passedInLock) {
                 System.out.println("Notify All Called");
-//                lock.notifyAll();
-//            }
+                lock.notifyAll();
+            }
         }
 
     }
@@ -267,6 +267,12 @@ public class MainActivity extends Activity {
 
     class ServerThread implements Runnable {
         Socket socket = null;
+        Object passedInLock = null;
+
+        ServerThread(Object passedInLock)
+        {
+            this.passedInLock = passedInLock;
+        }
 
         public void run() {
             try {
@@ -283,7 +289,7 @@ public class MainActivity extends Activity {
                         socket = serverSocket.accept();
 
                     if(commThread == null) {
-                        commThread = new CommunicationThread(socket);
+                        commThread = new CommunicationThread(socket, this.passedInLock);
                         new Thread(commThread).start();
 
                     }
@@ -299,8 +305,11 @@ public class MainActivity extends Activity {
 
         private Socket clientSocket;
         private BufferedReader input;
+        private Object passedInLock = null;
 
-        public CommunicationThread(Socket clientSocket) {
+        public CommunicationThread(Socket clientSocket, Object passedInLock) {
+
+            this.passedInLock = passedInLock;
 
             if(this.clientSocket == null)
                 this.clientSocket = clientSocket;
@@ -340,13 +349,13 @@ public class MainActivity extends Activity {
                         out.println(jsonObjectResponse.toString());
                     }
                     if(connected && jsonObject.get("RequestType").toString().equals("YourMove")) {
-//                        try {
-//                            synchronized (lock) {
+                        try {
+                            synchronized (this.passedInLock) {
                                 System.out.println("Waiting");
-//                                wait();
+                                this.passedInLock.wait();
                                 System.out.println("Done waiting");
-////                            }
-//                        }catch (InterruptedException ie){}
+                            }
+                        }catch (InterruptedException ie){}
                         JSONObject jsonObjectResponse = new JSONObject();
                         jsonObjectResponse.put("RequestType", "YourMove");
                         out.println(jsonObjectResponse.toString());
