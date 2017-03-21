@@ -1,4 +1,4 @@
-package com.example.daniel.mancalaapp;
+package com.example.daniel.mancalaappclient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +19,7 @@ public class StartGameActivity extends AppCompatActivity {
               @Override
               public void onClick(View view) {
                   Intent intent = new Intent(StartGameActivity.this, MainActivity.class);
-                  intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                   startActivity(intent);
-                  finish();
               }
         });
     }
